@@ -20,7 +20,6 @@ public class PayrollApp extends Application {
 
         payrollService = new PayrollService(new FileEmployeeRepository());
 
-        // 1️⃣ Employee input fields
         TextField idField = new TextField(); idField.setPromptText("ID");
         TextField nameField = new TextField(); nameField.setPromptText("Name");
         TextField salaryField = new TextField(); salaryField.setPromptText("Salary");
@@ -28,16 +27,13 @@ public class PayrollApp extends Application {
         TextField hoursField = new TextField(); hoursField.setPromptText("Hours");
         TextField rateField = new TextField(); rateField.setPromptText("Rate");
 
-        // 2️⃣ Employee type ComboBox
         ComboBox<String> type = new ComboBox<>();
         type.getItems().addAll("FULL", "PART");
         type.setValue("FULL"); // default
 
-        // 3️⃣ Buttons
         Button addBtn = new Button("Add Employee");
         Button deleteBtn = new Button("Delete Employee");
 
-        // 4️⃣ Role-based GUI logic
         boolean isAdmin = role == UserRole.ADMIN;
 
         idField.setDisable(!isAdmin);
@@ -49,7 +45,6 @@ public class PayrollApp extends Application {
         addBtn.setVisible(isAdmin);
         deleteBtn.setVisible(isAdmin);
 
-        // 5️⃣ Dynamic field visibility based on employee type
         type.setOnAction(e -> {
             boolean isFull = type.getValue().equals("FULL");
             salaryField.setDisable(!isFull || !isAdmin);
@@ -58,11 +53,10 @@ public class PayrollApp extends Application {
             rateField.setDisable(isFull || !isAdmin);
         });
 
-        // 6️⃣ ListView to display employees
+     
         ListView<Employee> listView = new ListView<>();
         listView.getItems().setAll(payrollService.getAllEmployees());
 
-        // 7️⃣ Add Employee button action
         addBtn.setOnAction(e -> {
             try {
                 Employee emp = EmployeeFactory.createEmployee(
@@ -84,7 +78,6 @@ public class PayrollApp extends Application {
             }
         });
 
-        // 8️⃣ Delete Employee button action
         deleteBtn.setOnAction(e -> {
             Employee emp = listView.getSelectionModel().getSelectedItem();
             if (emp != null) {
@@ -94,7 +87,6 @@ public class PayrollApp extends Application {
             }
         });
 
-        // 9️⃣ Layout
         VBox root = new VBox(8,
                 new Label("Role: " + role),
                 type, idField, nameField, salaryField, benefitField, hoursField, rateField,
