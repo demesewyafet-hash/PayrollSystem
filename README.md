@@ -1,8 +1,7 @@
 # Payroll System
 
 **Description:**  
-A system that automates the calculation of employee salaries, taxes, and benefits.  
-This desktop application supports Admin and Viewer roles, handles Full-time and Part-time employees, and stores data persistently in a text file.
+Payroll Management System is a desktop-based application designed to automate the calculation of employee salaries, including taxes and benefits. The system supports role-based access control by distinguishing between Admin and Viewer users, manages both Full-time and Part-time employees, and provides persistent data storage through a text file to ensure data consistency across sessions.
 ## Features
 
 - Add, view, and manage employees (Admin only)
