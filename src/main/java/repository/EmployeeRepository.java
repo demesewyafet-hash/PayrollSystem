@@ -9,4 +9,4 @@ public interface EmployeeRepository {
     void update(Employee employee);
     void delete(int employeeId);
 
-}
+}//a repository class to save all the data's
